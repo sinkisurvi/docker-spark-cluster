@@ -10,13 +10,13 @@ def init_spark():
   return sql,sc
 
 def main():
-  url = "jdbc:postgresql://demo-database:5432/mta_data"
+  url = "jdbc:postgresql://demo-database:5432/postgres"
   properties = {
     "user": "postgres",
     "password": "casa1234",
     "driver": "org.postgresql.Driver"
   }
-  file = "/opt/spark-data/MTA_2014_08_01.csv"
+  file = "/opt/spark-data/MTA-Bus-Time_.2014-08-01.csv"
   sql,sc = init_spark()
 
   df = sql.read.load(file,format = "csv", inferSchema="true", sep="\t", header="true"
@@ -27,9 +27,10 @@ def main():
   # Filter invalid coordinates
   df.where("latitude <= 90 AND latitude >= -90 AND longitude <= 180 AND longitude >= -180") \
     .where("latitude != 0.000000 OR longitude !=  0.000000 ") \
-    .write \
-    .jdbc(url=url, table="mta_reports", mode='append', properties=properties) \
-    .save()
+    .show(10)
+    # .write \
+    # .jdbc(url=url, table="mta_reports", mode='append', properties=properties) \
+    # .save()
   
 if __name__ == '__main__':
   main()

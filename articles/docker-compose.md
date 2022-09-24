@@ -139,7 +139,7 @@ services:
     image: cluster-apache-spark:3.0.2
     ports:
       - "9091:8080"
-      - "7000:7000"
+      - "7001:7000"
     depends_on:
       - spark-master
     environment:
@@ -157,7 +157,7 @@ services:
     image: cluster-apache-spark:3.0.2
     ports:
       - "9092:8080"
-      - "7001:7000"
+      - "7002:7000"
     depends_on:
       - spark-master
     environment:

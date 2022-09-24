@@ -99,7 +99,12 @@ latitude|longitude|time_received|vehicle_id|distance_along_trip|inferred_directi
 ---|---|---|---|---|---|---|---|---|---|---|---|---
 40.668602|-73.986697|2014-08-01 04:00:01|469|4135.34710710144|1|IN_PROGRESS|MTA NYCT_B63|MTA NYCT_JG_C4-Weekday-141500_B63_123|2.63183804205619|MTA_305423|2014-08-01 04:00:00|2014-08-01
 
+
 To submit the app connect to one of the workers or the master and execute:
+
+```sh
+docker exec -it docker-spark-cluster-master_spark-worker-a_1 bash
+```
 
 ```sh
 /opt/spark/bin/spark-submit --master spark://spark-master:7077 \
@@ -166,8 +171,7 @@ You will notice on the spark-ui a driver program and executor program running(In
 * Follow the steps to run the docker-compose file. You can scale this down if needed to 1 worker. 
 
 ```sh
-docker-compose up --scale spark-worker=1
-docker exec -it docker-spark-cluster_spark-worker_1 bash
+docker exec -it docker-spark-cluster-master_spark-worker-a_1 bash
 apt update
 apt install python3-pip
 pip3 install pyspark
