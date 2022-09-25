@@ -27,7 +27,7 @@ The following steps will make you run your spark cluster's containers.
 
 
 ```sh
-docker build -t cluster-apache-spark:3.0.2 .
+docker build -t cluster-apache-spark:3.3.0 .
 ```
 
 ## Run the docker-compose
@@ -103,7 +103,8 @@ latitude|longitude|time_received|vehicle_id|distance_along_trip|inferred_directi
 To submit the app connect to one of the workers or the master and execute:
 
 ```sh
-docker exec -it docker-spark-cluster-master_spark-worker-a_1 bash
+docker exec -it spark_worker_container_a bash
+
 ```
 
 ```sh
@@ -171,7 +172,7 @@ You will notice on the spark-ui a driver program and executor program running(In
 * Follow the steps to run the docker-compose file. You can scale this down if needed to 1 worker. 
 
 ```sh
-docker exec -it docker-spark-cluster-master_spark-worker-a_1 bash
+docker exec -it spark_worker_container_a bash
 apt update
 apt install python3-pip
 pip3 install pyspark
